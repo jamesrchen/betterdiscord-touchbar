@@ -35,7 +35,7 @@ class touchbar {
         let touchBar = new TouchBar({
                 items: [
                     new TouchBarLabel({
-                        label: "Discord Touchbar by unknownguy2002",
+                        label: "[Discord]",
                         textColor: "#99AAB5"
                     }),
                     new TouchBarSpacer({
@@ -52,21 +52,29 @@ class touchbar {
                         label: "Guild Name",
                         textColor: "#FFFFFF"
                     }),
+                    new TouchBarLabel({
+                        label: "#Channel Name",
+                        textColor: "#FFFFFF"
+                    }),
                 ]
         })
         BrowserWindow.getAllWindows()[0].setTouchBar(touchBar)
     }
 
 
-    onSwitch(changed){
+    onSwitch(){
             let guildname = "Guild Name"
+            let channelname = "Channel Name"
             if(BdApi.findModuleByProps("getGuild").getGuild(BdApi.findModuleByProps("getLastSelectedGuildId").getGuildId())){
                 guildname = BdApi.findModuleByProps("getGuild").getGuild(BdApi.findModuleByProps("getLastSelectedGuildId").getGuildId()).name
+            }
+            if(BdApi.findModuleByProps("getChannel").getChannel(BdApi.findModuleByProps("getLastSelectedChannelId").getChannelId())){
+                channelname = BdApi.findModuleByProps("getChannel").getChannel(BdApi.findModuleByProps("getLastSelectedChannelId").getChannelId()).name
             }
             let touchBar = new TouchBar({
                 items: [
                     new TouchBarLabel({
-                        label: "Discord Touchbar by unknownguy2002",
+                        label: "[Discord]",
                         textColor: "#99AAB5"
                     }),
                     new TouchBarSpacer({
@@ -83,6 +91,11 @@ class touchbar {
                         label: guildname,
                         textColor: "#FFFFFF"
                     }),
+                    new TouchBarLabel({
+                        label: "#"+channelname,
+                        textColor: "#FFFFFF"
+                    }),
+
                 ]
             })
             BrowserWindow.getAllWindows()[0].setTouchBar(touchBar)
